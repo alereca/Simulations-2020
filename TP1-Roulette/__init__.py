@@ -1,7 +1,7 @@
 from Utils.roulette import generate_array_of_rf
 from Graphs.line_plot import plot_graph
 
-selected_num = 7
+selected_num = 21
 num_iters = 1500
 expected_rf = 1 / 37
 
