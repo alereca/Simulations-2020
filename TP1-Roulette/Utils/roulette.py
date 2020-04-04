@@ -1,22 +1,21 @@
 import random as rand
+import numpy as np
 
 
-def generate_array_of_rf(selected_num, num_iters):
-    matrix = [[], []]
+def generate_metrics_array(selected_num, num_iters):
+    selected_elements = np.ndarray(num_iters)
+    results = np.ndarray((4, num_iters))
     occurrences = 0
-    last_avg = 0
-    last_variance = 0
-    for i in range(1, num_iters):
+    for i in range(0, num_iters):
         random_int = rand.randint(0, 36)
+        selected_elements[i] = random_int
+
         if selected_num == random_int:
             occurrences += 1
 
-        actual_rf = occurrences / i
-        avg = ((last_avg * (i-1)) + random_int) / i
-        last_variance = (random_int - avg)
+        results[0][i] = occurrences / (i + 1)
+        results[1][i] = selected_elements[0:i+1].mean()
+        results[2][i] = selected_elements[0:i+1].std()
+        results[3][i] = results[2][i] ** 2
 
-        matrix[0].append(actual_rf)
-        matrix[1].append(avg)
-        last_avg = avg
-
-    return matrix
+    return results

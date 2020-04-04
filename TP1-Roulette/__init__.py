@@ -1,12 +1,16 @@
-from Utils.roulette import generate_array_of_rf
+from Utils.roulette import generate_metrics_array
 from Graphs.line_plot import plot_graph
 
-selected_num = 21
-num_iters = 1500
-expected_rf = 18
+selected_num = 7
+num_iters = 1000
+expected_values = {
+    "rf": 1 / 37,
+    "avg": 18,
+    "std": 10,
+    "var": 110
+}
 
 if __name__ == "__main__":
-    rf_list = generate_array_of_rf(
+    metrics_array = generate_metrics_array(
         selected_num, num_iters)
-    print(rf_list[1])
-    plot_graph(rf_list[1], num_iters, selected_num, expected_rf)
+    plot_graph(metrics_array, num_iters, selected_num, expected_values)
