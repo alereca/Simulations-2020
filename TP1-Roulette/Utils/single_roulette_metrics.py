@@ -2,7 +2,7 @@ import random as rand
 import numpy as np
 
 
-def generate_metrics_array(selected_num, num_iters):
+def generate_multi_metrics_array(selected_num, num_iters):
     selected_elements = np.ndarray(num_iters)
     results = np.ndarray((4, num_iters))
     occurrences = 0

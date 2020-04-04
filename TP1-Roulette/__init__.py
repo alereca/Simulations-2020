@@ -1,4 +1,5 @@
-from Utils.roulette import generate_metrics_array
+from Utils.single_roulette_metrics import generate_multi_metrics_array
+from Utils.multiple_roulette_metrics import merge_multi_metric_arrays
 from Graphs.line_plot import plot_graph
 
 selected_num = 7
@@ -11,6 +12,11 @@ expected_values = {
 }
 
 if __name__ == "__main__":
-    metrics_array = generate_metrics_array(
-        selected_num, num_iters)
-    plot_graph(metrics_array, num_iters, selected_num, expected_values)
+    """ metrics_array = generate_multi_metrics_array(
+        selected_num, num_iters) """
+    merged_multi_metrics_array = merge_multi_metric_arrays(num_iters, [
+        generate_multi_metrics_array(7, num_iters),
+        generate_multi_metrics_array(7, num_iters),
+        generate_multi_metrics_array(7, num_iters)
+    ])
+    plot_graph(merged_multi_metrics_array, num_iters, selected_num, expected_values)
