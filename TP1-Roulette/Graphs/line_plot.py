@@ -22,7 +22,7 @@ def plot_graph(multi_metrics_arrays, n_iters, num, expected_values, file_out):
         params=Params(
             title="Relative Frequency",
             xlabel="Iteration Number (n)",
-            ylabel=f"RF of number {num}(rf)",
+            ylabel=f"RF of number {num}",
             position=1))
 
     specific_plot_generator(

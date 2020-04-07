@@ -14,8 +14,9 @@ def generate_multi_metrics_array(selected_num, num_iters):
             occurrences += 1
 
         results[0][i] = occurrences / (i + 1)
-        results[1][i] = selected_elements[0:i+1].mean()
-        results[2][i] = selected_elements[0:i+1].std()
+        array_slice = selected_elements[0:i+1]
+        results[1][i] = array_slice.mean()
+        results[2][i] = array_slice.std()
         results[3][i] = results[2][i] ** 2
 
     return results
