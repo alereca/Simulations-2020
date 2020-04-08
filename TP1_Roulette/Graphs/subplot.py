@@ -6,8 +6,8 @@ def general_generate_subplot(figure, x_axis, n_iters):
         ax = figure.add_subplot(2, 2, params.position)
         for metrics_array in metrics_arrays:
             ax.plot(x_axis, metrics_array)
-        ax.hlines(expected_value, 0, n_iters,
-                  colors="red", linestyles="dashed")
+        ax.axhline(expected_value, 0, n_iters,
+                  color="red", linestyle="dashed")
         ax.set_title(label=params.title)
         ax.set_xlabel(xlabel=params.xlabel)
         ax.set_ylabel(ylabel=params.ylabel)
