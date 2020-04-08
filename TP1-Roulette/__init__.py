@@ -10,6 +10,7 @@ expected_values = {
     "std": 114**(1/2),
     "var": 114
 }
+num_of_populations = 2
 
 if __name__ == "__main__":
     plot_graph(
@@ -32,27 +33,7 @@ if __name__ == "__main__":
             generate_multi_metrics_array(
                 generate_random_numbers_populations(num_iters),
                 selected_num, num_iters
-            ),
-            generate_multi_metrics_array(
-                generate_random_numbers_populations(num_iters),
-                selected_num, num_iters
-            ),
-            generate_multi_metrics_array(
-                generate_random_numbers_populations(num_iters),
-                selected_num, num_iters
-            ),
-            generate_multi_metrics_array(
-                generate_random_numbers_populations(num_iters),
-                selected_num, num_iters
-            ),
-            generate_multi_metrics_array(
-                generate_random_numbers_populations(num_iters),
-                selected_num, num_iters
-            ),
-            generate_multi_metrics_array(
-                generate_random_numbers_populations(num_iters),
-                selected_num, num_iters
-            )
+            ) for _ in range(num_of_populations)
         ],
         file_out="multi_run_roulette_metrics.jpg"
     )
