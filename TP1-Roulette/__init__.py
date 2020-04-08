@@ -3,7 +3,7 @@ from Utils.roulette_metrics import generate_multi_metrics_array
 from Graphs.line_plot import plot_graph
 
 selected_num = 7
-num_iters = 10000
+num_iters = 1000
 expected_values = {
     "rf": 1 / 37,
     "avg": 18,
