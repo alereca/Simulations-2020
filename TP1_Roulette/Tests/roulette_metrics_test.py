@@ -19,7 +19,7 @@ def test_generate_multi_metrics_array():
         random_elements_populations,
         selected_num,
         num_iterations)
-    # Arrange
+    # Assert
     npt.assert_array_equal(results, np.array([
         np.array([
             0,
