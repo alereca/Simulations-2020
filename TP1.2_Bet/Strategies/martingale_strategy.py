@@ -1,7 +1,7 @@
 from random import randint
 
 
-def martingale_strategy(board, capital, bet_amount, color):
+def martingale_strategy(board, capital, bet_amount, selected_color):
     historic_capital_array = []
     frequency_array = []
     victories_acum = 0
@@ -9,10 +9,11 @@ def martingale_strategy(board, capital, bet_amount, color):
 
     while capital > bet_amount:
         random_roulette_number = randint(0, 36)
-        if board[random_roulette_number].color == color:
+        num_color = board[random_roulette_number].color
+        if num_color == selected_color:
             capital += bet_amount * 36
             victories_acum += 1
-        if random_roulette_number != color:
+        if num_color != selected_color:
             capital -= bet_amount
             bet_amount += bet_amount * 2
             defeats_acum += 1
