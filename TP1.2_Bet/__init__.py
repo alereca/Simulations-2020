@@ -1,6 +1,6 @@
 from Strategies.martingale_strategy import martingale_strategy
 from Board.board import generate_board
-from Graphics.generic_strategy_graphic import generate_graphic
+from Graphs.generic_strategy_graph import generate_graph
 
 
 if __name__ == "__main__":
@@ -14,7 +14,7 @@ if __name__ == "__main__":
             ),
             martingale_strategy(
                 generate_board(),
-                initial_capital=15000,
+                initial_capital=35000,
                 initial_bet_amount=5,
                 color="black",
             ),
@@ -22,7 +22,7 @@ if __name__ == "__main__":
         "unlimited_capital": [
             martingale_strategy(
                 generate_board(),
-                initial_capital=15000,
+                initial_capital=35000,
                 initial_bet_amount=5,
                 color="red",
                 unlimited_money=True,
@@ -39,4 +39,4 @@ if __name__ == "__main__":
         ],
     }
 
-    generate_graphic(results)
+    generate_graph(results, "Martingale")

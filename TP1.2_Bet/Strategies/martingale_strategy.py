@@ -1,5 +1,6 @@
 from random import randint
 from Board.board import generate_board
+from Utils.results import Results
 
 
 def martingale_strategy(
@@ -34,9 +35,9 @@ def martingale_strategy(
         historic_capital_array.append(capital)
         frequency_array.append(victories_acum / (victories_acum + defeats_acum))
 
-    return {
-        "frequency": frequency_array,
-        "capital": historic_capital_array,
-        "initial_capital": initial_capital,
-        "color": color,
-    }
+    return Results(
+        frequency=frequency_array,
+        capital=historic_capital_array,
+        initial_capital=initial_capital,
+        color=color,
+    )
