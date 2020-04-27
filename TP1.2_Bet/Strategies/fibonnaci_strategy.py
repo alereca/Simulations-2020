@@ -36,24 +36,23 @@ def fibonacci_strategy(
 
     if initial_bet_amount in fibonacci_list:
         fb_index = fibonacci_list.index(initial_bet_amount)
-        while (
-            unlimited_money is False and capital > bet_amount and iters < max_iterations
-        ) or (unlimited_money and iters < max_iterations):
+        while (unlimited_money is False and capital > bet_amount) or (
+                unlimited_money and iters < max_iterations
+        ):
             random_roulette_number = randint(0, 36)
+            historic_capital_array.append(capital)
             if board[random_roulette_number].color == color:
                 capital += bet_amount * 2
-                fb_index += 1
-                bet_amount = fibonacci_list[fb_index]
-                victories_acum += 1
-            if board[random_roulette_number].color != color:
                 fb_index -= 2
                 if fb_index < 0:
                     fb_index = 0
+                bet_amount = fibonacci_list[fb_index]
+                victories_acum += 1
+            if board[random_roulette_number].color != color:
+                fb_index += 1
                 capital -= bet_amount
                 bet_amount = fibonacci_list[fb_index]
                 defeats_acum += 1
-
-            historic_capital_array.append(capital)
             frequency_array.append(victories_acum / (victories_acum + defeats_acum))
             iters += 1
 
