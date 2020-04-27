@@ -1,87 +1,41 @@
 from random import randint
-from Board.board import generate_board
+from Utils.results import Results
 
-
-def closest(lst, K):
-    return lst[min(range(len(lst)), key=lambda i: abs(lst[i] - K))]
-
-
-def obtain_results():
-    red_result_limited_money = m_s_limited_money(generate_board(), 1000, 5, "red")
-    black_result_limited_money = m_s_limited_money(generate_board(), 1000, 5, "black")
-    red_result_unlimited_money = m_s_unlimited_money(generate_board(), 10000, 5, "red")
-    black_result_unlimited_money = m_s_unlimited_money(generate_board(), 10000, 5, "black")
-    return append_results(red_result_limited_money, black_result_limited_money, red_result_unlimited_money,
-                          black_result_unlimited_money)
-
-
-def append_results(result1, result2, result3, result4):
-    results = []
-    results.append(result1)
-    results.append(result2)
-    results.append(result3)
-    results.append(result4)
-    return results
-
-
-def m_s_limited_money(board, capital, bet_amount, selected_color):  # m_s_limited_money == martingale_strategy
+def martingale_strategy(
+    board,
+    initial_capital,
+    initial_bet_amount,
+    color,
+    unlimited_money=False,
+    max_iterations=None,
+):
     historic_capital_array = []
     frequency_array = []
-    bet_amount_array = []
     victories_acum = 0
     defeats_acum = 0
-    cont = 0
+    iters = 0
+    capital = initial_capital
+    bet_amount = initial_bet_amount
 
-    while capital > 0:
+    while (unlimited_money is False and capital > bet_amount) or (
+        unlimited_money and iters < max_iterations
+    ):
         random_roulette_number = randint(0, 36)
-        num_color = board[random_roulette_number].color
-        if num_color == selected_color:
+        if board[random_roulette_number].color == color:
             capital += bet_amount * 2
+            bet_amount = initial_bet_amount
             victories_acum += 1
-        if num_color != selected_color:
+        if board[random_roulette_number].color != color:
             capital -= bet_amount
             bet_amount += bet_amount * 2
             defeats_acum += 1
-        bet_amount_array.append(bet_amount)
-        if capital > 0:
-            historic_capital_array.append(capital)
-        else:
-            historic_capital_array.append(0)
+        historic_capital_array.append(capital)
         frequency_array.append(victories_acum / (victories_acum + defeats_acum))
-        if capital < bet_amount:
-            bet_amount = closest(bet_amount_array, capital)
-        cont += 1
+        iters += 1
 
-    return {"frequency": frequency_array, "capital": historic_capital_array}
-
-
-def m_s_unlimited_money(board, played_times, bet_amount, selected_color):  # m_s_limited_money == martingale_strategy
-    historic_capital_array = []
-    frequency_array = []
-    bet_amount_array = []
-    victories_acum = 0
-    defeats_acum = 0
-    cont = 0
-    capital = 1000000
-
-    while cont != played_times:
-        random_roulette_number = randint(0, 36)
-        num_color = board[random_roulette_number].color
-        if num_color == selected_color:
-            capital += bet_amount * 2
-            victories_acum += 1
-        if num_color != selected_color:
-            capital -= bet_amount
-            bet_amount += bet_amount * 2
-            defeats_acum += 1
-        bet_amount_array.append(bet_amount)
-        if capital > 0:
-            historic_capital_array.append(capital)
-        else:
-            historic_capital_array.append(0)
-        frequency_array.append(victories_acum / (victories_acum + defeats_acum))
-        if capital < bet_amount:
-            bet_amount = closest(bet_amount_array, capital)
-        cont += 1
-
-    return {"frequency": frequency_array, "capital": historic_capital_array}
+    return Results(
+        frequency=frequency_array,
+        capital=historic_capital_array,
+        initial_capital=initial_capital,
+        color=color,
+    )
