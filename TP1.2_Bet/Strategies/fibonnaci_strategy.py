@@ -2,7 +2,8 @@ import numpy
 from random import randint
 from Utils.results import Results
 
-def fib(nterms = 100, fb_list=[]):
+
+def fib(nterms=100, fb_list=[]):
     n1 = 1
     n2 = 1
     fb_list.append(n1)
@@ -13,6 +14,7 @@ def fib(nterms = 100, fb_list=[]):
         n2 = nth
         fb_list.append(nth)
     return fb_list
+
 
 def fibonacci_strategy(
     board,
@@ -32,12 +34,11 @@ def fibonacci_strategy(
 
     fibonacci_list = fib()
 
-
     if initial_bet_amount in fibonacci_list:
         fb_index = fibonacci_list.index(initial_bet_amount)
-        while (unlimited_money is False and capital > bet_amount and iters < max_iterations) or (
-                unlimited_money and iters < max_iterations
-        ):
+        while (
+            unlimited_money is False and capital > bet_amount and iters < max_iterations
+        ) or (unlimited_money and iters < max_iterations):
             random_roulette_number = randint(0, 36)
             if board[random_roulette_number].color == color:
                 capital += bet_amount * 2
@@ -57,10 +58,8 @@ def fibonacci_strategy(
             iters += 1
 
     return Results(
-            frequency=frequency_array,
-            capital=historic_capital_array,
-            initial_capital=initial_capital,
-            color=color,
+        frequency=frequency_array,
+        capital=historic_capital_array,
+        initial_capital=initial_capital,
+        color=color,
     )
-
-
