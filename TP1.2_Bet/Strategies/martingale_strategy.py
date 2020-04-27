@@ -1,5 +1,4 @@
 from random import randint
-from Board.board import generate_board
 from Utils.results import Results
 
 
@@ -25,10 +24,10 @@ def martingale_strategy(
         iters += 1
         random_roulette_number = randint(0, 36)
         if board[random_roulette_number].color == color:
-            capital += bet_amount
+            capital += bet_amount * 2
             bet_amount = initial_bet_amount
             victories_acum += 1
-        if random_roulette_number != color:
+        if board[random_roulette_number].color != color:
             capital -= bet_amount
             bet_amount += bet_amount * 2
             defeats_acum += 1
