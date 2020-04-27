@@ -1,6 +1,7 @@
 from random import randint
 from Utils.results import Results
 
+
 def martingale_strategy(
     board,
     initial_capital,
@@ -20,6 +21,7 @@ def martingale_strategy(
     while (unlimited_money is False and capital > bet_amount) or (
         unlimited_money and iters < max_iterations
     ):
+        iters += 1
         random_roulette_number = randint(0, 36)
         if board[random_roulette_number].color == color:
             capital += bet_amount * 2
@@ -31,7 +33,6 @@ def martingale_strategy(
             defeats_acum += 1
         historic_capital_array.append(capital)
         frequency_array.append(victories_acum / (victories_acum + defeats_acum))
-        iters += 1
 
     return Results(
         frequency=frequency_array,
