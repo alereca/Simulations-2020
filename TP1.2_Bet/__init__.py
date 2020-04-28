@@ -1,118 +1,84 @@
 from Strategies.martingale_strategy import martingale_strategy
 from Board.board import generate_board
 from Graphs.generic_strategy_graph import generate_graph
-from Strategies.martingale_martin_alejandro_strategy import martingale_martin_alejandro_strategy
+from Strategies.martingale_custom_strategy import martingale_custom_strategy
 from Strategies.fibonnaci_strategy import fibonacci_strategy
-#import seaborn as sn
+from Utils.run_strategy import run_strategy
+from Utils.config_strategy import Config
 
+# import seaborn as sn
 
 if __name__ == "__main__":
-    results = {
+    common_configs = {
         "limited_capital": [
-            martingale_strategy(
-                generate_board(),
-                initial_capital=15000,
-                initial_bet_amount=5,
-                color="red",
+            Config(
+                initial_capital=1500, initial_bet_amount=5, color="red", opacity=0.25
             ),
-            martingale_strategy(
-                generate_board(),
-                initial_capital=35000,
-                initial_bet_amount=5,
-                color="black",
+            Config(
+                initial_capital=1500, initial_bet_amount=5, color="red", opacity=0.5
+            ),
+            Config(initial_capital=1500, initial_bet_amount=5, color="red", opacity=1),
+            Config(
+                initial_capital=1500, initial_bet_amount=5, color="black", opacity=0.25
+            ),
+            Config(
+                initial_capital=1500, initial_bet_amount=5, color="black", opacity=0.5
+            ),
+            Config(
+                initial_capital=1500, initial_bet_amount=5, color="black", opacity=1
             ),
         ],
         "unlimited_capital": [
-            martingale_strategy(
-                generate_board(),
-                initial_capital=35000,
+            Config(
+                initial_capital=1500,
                 initial_bet_amount=5,
                 color="red",
-                unlimited_money=True,
+                opacity=0.25,
                 max_iterations=1000,
             ),
-            martingale_strategy(
-                generate_board(),
-                initial_capital=15000,
+            Config(
+                initial_capital=1500,
+                initial_bet_amount=5,
+                color="red",
+                opacity=0.5,
+                max_iterations=1000,
+            ),
+            Config(
+                initial_capital=1500,
+                initial_bet_amount=5,
+                color="red",
+                opacity=1,
+                max_iterations=1000,
+            ),
+            Config(
+                initial_capital=1500,
                 initial_bet_amount=5,
                 color="black",
-                unlimited_money=True,
+                opacity=0.25,
+                max_iterations=1000,
+            ),
+            Config(
+                initial_capital=1500,
+                initial_bet_amount=5,
+                color="black",
+                opacity=0.5,
+                max_iterations=1000,
+            ),
+            Config(
+                initial_capital=1500,
+                initial_bet_amount=5,
+                color="black",
+                opacity=1,
                 max_iterations=1000,
             ),
         ],
     }
 
-    results2 = {
-        "limited_capital": [
-            martingale_martin_alejandro_strategy(
-                generate_board(),
-                initial_capital=15000,
-                initial_bet_amount=5,
-                color="red",
-            ),
-            martingale_martin_alejandro_strategy(
-                generate_board(),
-                initial_capital=35000,
-                initial_bet_amount=5,
-                color="black",
-            ),
-        ],
-        "unlimited_capital": [
-            martingale_martin_alejandro_strategy(
-                generate_board(),
-                initial_capital=35000,
-                initial_bet_amount=5,
-                color="red",
-                unlimited_money=True,
-                max_iterations=1000,
-            ),
-            martingale_martin_alejandro_strategy(
-                generate_board(),
-                initial_capital=15000,
-                initial_bet_amount=5,
-                color="black",
-                unlimited_money=True,
-                max_iterations=1000,
-            ),
-        ],
-    }
+    results_martingale = run_strategy(martingale_strategy, common_configs)
+    # results_martingale_custom = run_strategy(martingale_custom_strategy, common_configs)
+    # results_fibonacci = run_strategy(fibonacci_strategy, common_configs)
 
-    results3 = {
-        "limited_capital": [
-            fibonacci_strategy(
-                generate_board(),
-                initial_capital=5000,
-                initial_bet_amount=233,
-                color="red",
-                max_iterations=1000
-            ),
-            fibonacci_strategy(
-                generate_board(),
-                initial_capital=5000,
-                initial_bet_amount=233,
-                color="black",
-                max_iterations=1000
-            ),
-        ],
-        "unlimited_capital": [
-           fibonacci_strategy(
-                generate_board(),
-                initial_capital=5000,
-                initial_bet_amount=233,
-                color="red",
-                unlimited_money=True,
-                max_iterations=1000,
-            ),
-            fibonacci_strategy(
-                generate_board(),
-                initial_capital=5000,
-                initial_bet_amount=233,
-                color="black",
-                unlimited_money=True,
-                max_iterations=1000,
-            ),
-        ],
-    }
-
-    #sn.set()
-    generate_graph(results3,"fibonacci")
+    # sn.set()
+    generate_graph(results_martingale, "martingale")
+    # generate_graph(results_martingale_custom, "martingale custom")
+    # generate_graph(results_fibonacci, "fibonacci")
