@@ -36,7 +36,7 @@ def martingale_custom_strategy(
             victories_acum += 1
         if board[random_roulette_number].color != color:
             capital -= bet_amount
-            bet_amount += bet_amount * 2
+            bet_amount = bet_amount * 2
             defeats_acum += 1
 
         frequency_array.append(victories_acum / (victories_acum + defeats_acum))
