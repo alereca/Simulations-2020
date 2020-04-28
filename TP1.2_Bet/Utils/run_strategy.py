@@ -1,26 +1,14 @@
 from Board.board import generate_board
+from Utils.config_strategy import Config
 
 
 def run_strategy(strategy, configs):
+    board = generate_board()
     return {
         "limited_capital": [
-            strategy(
-                generate_board(),
-                initial_capital=config.initial_capital,
-                initial_bet_amount=config.initial_bet_amount,
-                color=config.color,
-            )
-            for config in filter(lambda c: not (c.max_iterations), configs)
+            strategy(config, board) for config in configs["limited_capital"]
         ],
         "unlimited_capital": [
-            strategy(
-                generate_board(),
-                initial_capital=config.initial_capital,
-                initial_bet_amount=config.initial_bet_amount,
-                color=config.color,
-                unlimited_money=True,
-                max_iterations=config.max_iterations,
-            )
-            for config in filter(lambda c: c.max_iterations, configs)
+            strategy(config, board) for config in configs["unlimited_capital"]
         ],
     }

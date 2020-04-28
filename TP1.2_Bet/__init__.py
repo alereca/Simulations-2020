@@ -9,28 +9,74 @@ from Utils.config_strategy import Config
 # import seaborn as sn
 
 if __name__ == "__main__":
-    common_configs = [
-        Config(initial_capital=1500, initial_bet_amount=5, color="red"),
-        Config(initial_capital=1500, initial_bet_amount=5, color="black"),
-        Config(
-            initial_capital=1500,
-            initial_bet_amount=5,
-            color="red",
-            max_iterations=1000,
-        ),
-        Config(
-            initial_capital=1500,
-            initial_bet_amount=5,
-            color="black",
-            max_iterations=1000,
-        ),
-    ]
+    common_configs = {
+        "limited_capital": [
+            Config(
+                initial_capital=1500, initial_bet_amount=5, color="red", opacity=0.25
+            ),
+            Config(
+                initial_capital=1500, initial_bet_amount=5, color="red", opacity=0.5
+            ),
+            Config(initial_capital=1500, initial_bet_amount=5, color="red", opacity=1),
+            Config(
+                initial_capital=1500, initial_bet_amount=5, color="black", opacity=0.25
+            ),
+            Config(
+                initial_capital=1500, initial_bet_amount=5, color="black", opacity=0.5
+            ),
+            Config(
+                initial_capital=1500, initial_bet_amount=5, color="black", opacity=1
+            ),
+        ],
+        "unlimited_capital": [
+            Config(
+                initial_capital=1500,
+                initial_bet_amount=5,
+                color="red",
+                opacity=0.25,
+                max_iterations=1000,
+            ),
+            Config(
+                initial_capital=1500,
+                initial_bet_amount=5,
+                color="red",
+                opacity=0.5,
+                max_iterations=1000,
+            ),
+            Config(
+                initial_capital=1500,
+                initial_bet_amount=5,
+                color="red",
+                opacity=1,
+                max_iterations=1000,
+            ),
+            Config(
+                initial_capital=1500,
+                initial_bet_amount=5,
+                color="black",
+                opacity=0.25,
+                max_iterations=1000,
+            ),
+            Config(
+                initial_capital=1500,
+                initial_bet_amount=5,
+                color="black",
+                opacity=0.5,
+                max_iterations=1000,
+            ),
+            Config(
+                initial_capital=1500,
+                initial_bet_amount=5,
+                color="black",
+                opacity=1,
+                max_iterations=1000,
+            ),
+        ],
+    }
 
     results_martingale = run_strategy(martingale_strategy, common_configs)
-
-    results_martingale_custom = run_strategy(martingale_custom_strategy, common_configs)
-
-    results_fibonacci = run_strategy(fibonacci_strategy, common_configs)
+    # results_martingale_custom = run_strategy(martingale_custom_strategy, common_configs)
+    # results_fibonacci = run_strategy(fibonacci_strategy, common_configs)
 
     # sn.set()
     generate_graph(results_martingale, "martingale")

@@ -13,7 +13,7 @@ def generate_graph(results, strategy_name):
 
     specific_plot_generator(
         metrics_arrays=[
-            Metrics(data=result.frequency, color=result.color)
+            Metrics(data=result.frequency, color=result.color, opacity=result.opacity)
             for result in results["limited_capital"]
         ],
         params=Params(
@@ -29,6 +29,7 @@ def generate_graph(results, strategy_name):
             Metrics(
                 data=result.capital,
                 color=result.color,
+                opacity=result.opacity,
                 expected_value=result.initial_capital,
             )
             for result in results["limited_capital"]
@@ -43,7 +44,7 @@ def generate_graph(results, strategy_name):
 
     specific_plot_generator(
         metrics_arrays=[
-            Metrics(data=result.frequency, color=result.color)
+            Metrics(data=result.frequency, color=result.color, opacity=result.opacity)
             for result in results["unlimited_capital"]
         ],
         params=Params(
@@ -59,6 +60,7 @@ def generate_graph(results, strategy_name):
             Metrics(
                 data=result.capital,
                 color=result.color,
+                opacity=result.opacity,
                 expected_value=result.initial_capital,
             )
             for result in results["unlimited_capital"]
