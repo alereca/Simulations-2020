@@ -1,40 +1,35 @@
 from random import randint
 from Utils.results import Results
 
+
 def closest(lst, K):
     return lst[min(range(len(lst)), key=lambda i: abs(lst[i] - K))]
 
 
-def martingale_custom_strategy(
-    board,
-    initial_capital,
-    initial_bet_amount,
-    color,
-    unlimited_money=False,
-    max_iterations=None,
-):
+def martingale_custom_strategy(config, board):
     historic_capital_array = []
     frequency_array = []
     victories_acum = 0
     defeats_acum = 0
     iters = 0
     bet_amount_array = []
-    capital = initial_capital
-    bet_amount = initial_bet_amount
+    capital = config.initial_capital
+    bet_amount = config.initial_bet_amount
+    unlimited_capital = config.max_iterations is not None
 
-    bet_amount_array.append(initial_bet_amount)
-
-    while (unlimited_money is False and capital > bet_amount) or (
-        unlimited_money and iters < max_iterations
+    bet_amount_array.append(config.initial_bet_amount)
+    frequency_array.append(0)
+    while (unlimited_capital is False and capital > bet_amount) or (
+        unlimited_capital and iters < config.max_iterations
     ):
-        random_roulette_number = randint(0, 36)
         historic_capital_array.append(capital)
         if capital < bet_amount:
             bet_amount = closest(bet_amount_array, capital)
-        if board[random_roulette_number].color == color:
+        board_num = board[randint(0, 36)]
+        if board_num.color == config.color:
             capital += bet_amount * 2
             victories_acum += 1
-        if board[random_roulette_number].color != color:
+        if board_num.color != config.color:
             capital -= bet_amount
             bet_amount = bet_amount * 2
             defeats_acum += 1
@@ -45,6 +40,7 @@ def martingale_custom_strategy(
     return Results(
         frequency=frequency_array,
         capital=historic_capital_array,
-        initial_capital=initial_capital,
-        color=color,
+        initial_capital=config.initial_capital,
+        color=config.color,
+        opacity=config.opacity,
     )
