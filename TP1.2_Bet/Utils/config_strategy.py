@@ -7,11 +7,11 @@ class Config:
         initial_capital,
         initial_bet_amount,
         color,
-        opacity=1,
+        plot_color = None,
         max_iterations=None,
     ):
         self.initial_capital = initial_capital
         self.initial_bet_amount = initial_bet_amount
         self.color = color
-        self.opacity = opacity
+        self.plot_color = plot_color
         self.max_iterations = max_iterations
