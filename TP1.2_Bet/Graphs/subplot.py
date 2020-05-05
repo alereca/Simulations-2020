@@ -7,7 +7,6 @@ def general_generate_subplot(figure):
                 ax.axhline(
                     metrics_array.expected_value,
                     color=metrics_array.color,
-                    alpha=metrics_array.opacity,
                     linestyle="dashed",
                 )
         ax.set_title(label=params.title)
