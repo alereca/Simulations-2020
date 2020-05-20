@@ -12,6 +12,7 @@ if __name__ == "__main__":
     common_configs = {
         "limited_capital": [
             Config(
+
                 initial_capital=10000, initial_bet_amount=120, color="red", plot_color="#ff1100",max_iterations=50 #Rojo
             ),
             Config(
@@ -28,11 +29,13 @@ if __name__ == "__main__":
             ),
             Config(
                 initial_capital=10000, initial_bet_amount=30, color="black", plot_color="#858585", max_iterations=50 #Gris claro
+
             ),
 
         ],
         "unlimited_capital": [
             Config(
+
                 initial_capital=100,
                 initial_bet_amount=1,
                 color="red",
@@ -79,6 +82,7 @@ if __name__ == "__main__":
                 plot_color="#858585",
                 max_iterations=100,
                 unlimited_capital=True
+
             ),
         ],
     }
@@ -97,6 +101,7 @@ if __name__ == "__main__":
     elif strategy == 3:
         results_fibonacci = run_strategy(fibonacci_strategy, common_configs)
         generate_graph(results_fibonacci, "fibonacci")
+
 
 
 
