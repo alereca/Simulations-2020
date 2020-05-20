@@ -3,6 +3,8 @@ from Graphs.subplot import general_generate_subplot
 from Graphs.params import Params
 from Graphs.metric_array import Metrics
 
+red_colors = []
+black_colors = []
 
 def generate_graph(results, strategy_name):
     fig = plt.figure()
@@ -13,7 +15,7 @@ def generate_graph(results, strategy_name):
 
     specific_plot_generator(
         metrics_arrays=[
-            Metrics(data=result.frequency, color=result.color)
+            Metrics(data=result.frequency, color=result.plot_color)
             for result in results["limited_capital"]
         ],
         params=Params(
@@ -28,7 +30,7 @@ def generate_graph(results, strategy_name):
         metrics_arrays=[
             Metrics(
                 data=result.capital,
-                color=result.color,
+                color=result.plot_color,
                 expected_value=result.initial_capital,
             )
             for result in results["limited_capital"]
@@ -43,7 +45,7 @@ def generate_graph(results, strategy_name):
 
     specific_plot_generator(
         metrics_arrays=[
-            Metrics(data=result.frequency, color=result.color)
+            Metrics(data=result.frequency, color=result.plot_color)
             for result in results["unlimited_capital"]
         ],
         params=Params(
@@ -58,7 +60,7 @@ def generate_graph(results, strategy_name):
         metrics_arrays=[
             Metrics(
                 data=result.capital,
-                color=result.color,
+                color=result.plot_color,
                 expected_value=result.initial_capital,
             )
             for result in results["unlimited_capital"]

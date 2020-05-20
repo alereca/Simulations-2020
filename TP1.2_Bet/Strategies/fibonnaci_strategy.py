@@ -2,7 +2,8 @@ import numpy
 from random import randint
 from Utils.results import Results
 
-def fib(nterms = 100, fb_list=[]):
+
+def fib(nterms=100, fb_list=[]):
     n1 = 1
     n2 = 1
     fb_list.append(n1)
@@ -14,53 +15,45 @@ def fib(nterms = 100, fb_list=[]):
         fb_list.append(nth)
     return fb_list
 
-def fibonacci_strategy(
-    board,
-    initial_capital,
-    initial_bet_amount,
-    color,
-    unlimited_money=False,
-    max_iterations=None,
-):
+
+def fibonacci_strategy(config, board):
     historic_capital_array = []
     frequency_array = []
     victories_acum = 0
     defeats_acum = 0
     iters = 0
-    capital = initial_capital
-    bet_amount = initial_bet_amount
+    capital = config.initial_capital
+    bet_amount = config.initial_bet_amount
+    unlimited_capital = config.max_iterations is not None
 
     fibonacci_list = fib()
 
-
-    if initial_bet_amount in fibonacci_list:
-        fb_index = fibonacci_list.index(initial_bet_amount)
-        while (unlimited_money is False and capital > bet_amount and iters < max_iterations) or (
-                unlimited_money and iters < max_iterations
+    if config.initial_bet_amount in fibonacci_list:
+        fb_index = fibonacci_list.index(config.initial_bet_amount)
+        while (unlimited_capital is False and capital > bet_amount) or (
+            unlimited_capital and iters < config.max_iterations
         ):
-            random_roulette_number = randint(0, 36)
-            if board[random_roulette_number].color == color:
+            historic_capital_array.append(capital)
+            board_num = board[randint(0, 36)]
+            if board_num.color == config.color:
                 capital += bet_amount * 2
-                fb_index += 1
-                bet_amount = fibonacci_list[fb_index]
-                victories_acum += 1
-            if board[random_roulette_number].color != color:
                 fb_index -= 2
                 if fb_index < 0:
                     fb_index = 0
+                bet_amount = fibonacci_list[fb_index]
+                victories_acum += 1
+            if board_num.color != config.color:
+                fb_index += 1
                 capital -= bet_amount
                 bet_amount = fibonacci_list[fb_index]
                 defeats_acum += 1
-
-            historic_capital_array.append(capital)
             frequency_array.append(victories_acum / (victories_acum + defeats_acum))
             iters += 1
 
     return Results(
-            frequency=frequency_array,
-            capital=historic_capital_array,
-            initial_capital=initial_capital,
-            color=color,
+        frequency=frequency_array,
+        capital=historic_capital_array,
+        initial_capital=config.initial_capital,
+        color=config.color,
+        plot_color=config.plot_color,
     )
-
-
