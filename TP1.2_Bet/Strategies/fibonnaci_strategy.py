@@ -24,13 +24,13 @@ def fibonacci_strategy(config, board):
     iters = 0
     capital = config.initial_capital
     bet_amount = config.initial_bet_amount
-    unlimited_capital = config.max_iterations is not None
+    unlimited_capital = config.unlimited_capital
 
     fibonacci_list = fib()
 
     if config.initial_bet_amount in fibonacci_list:
         fb_index = fibonacci_list.index(config.initial_bet_amount)
-        while (unlimited_capital is False and capital > bet_amount) or (
+        while (unlimited_capital is False and capital > bet_amount and iters < config.max_iterations - 1) or (
             unlimited_capital and iters < config.max_iterations
         ):
             historic_capital_array.append(capital)
