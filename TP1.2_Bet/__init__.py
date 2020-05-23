@@ -12,46 +12,46 @@ if __name__ == "__main__":
     common_configs = {
         "limited_capital": [
             Config(
-                initial_capital=10000,
-                initial_bet_amount=120,
+                initial_capital=15000,
+                initial_bet_amount=144,
                 color="red",
-                plot_color="#ff1100",
-                max_iterations=50,  # Rojo
+                plot_color="#ff1100",  # Rojo
+                max_iterations=50,
             ),
             Config(
-                initial_capital=10000,
-                initial_bet_amount=1500,
+                initial_capital=12000,
+                initial_bet_amount=1597,
                 color="red",
-                plot_color="#800c04",
-                max_iterations=50,  # Bordo
+                plot_color="#800c04",  # Bordo
+                max_iterations=50,
             ),
             Config(
-                initial_capital=10000,
-                initial_bet_amount=300,
+                initial_capital=8000,
+                initial_bet_amount=377,
                 color="red",
-                plot_color="#f56056",
-                max_iterations=50,  # Rojo claro
+                plot_color="#f56056",  # Rojo claro
+                max_iterations=50,
+            ),
+            Config(
+                initial_capital=700,
+                initial_bet_amount=21,
+                color="black",
+                plot_color="#000000",  # Negro
+                max_iterations=50,
+            ),
+            Config(
+                initial_capital=18000,
+                initial_bet_amount=13,
+                color="black",
+                plot_color="#454545",  # Gris oscuro
+                max_iterations=50,
             ),
             Config(
                 initial_capital=10000,
-                initial_bet_amount=20,
+                initial_bet_amount=34,
                 color="black",
-                plot_color="#000000",
-                max_iterations=50,  # Negro
-            ),
-            Config(
-                initial_capital=10000,
-                initial_bet_amount=10,
-                color="black",
-                plot_color="#454545",
-                max_iterations=50,  # Gris oscuro
-            ),
-            Config(
-                initial_capital=10000,
-                initial_bet_amount=30,
-                color="black",
-                plot_color="#858585",
-                max_iterations=50,  # Gris claro
+                plot_color="#858585",  # Gris claro
+                max_iterations=50,
             ),
         ],
         "unlimited_capital": [
