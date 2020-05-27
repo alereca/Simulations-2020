@@ -35,5 +35,4 @@ def martingale_strategy(config, board):
         capital=historic_capital_array,
         initial_capital=config.initial_capital,
         color=config.color,
-        plot_color= config.plot_color,
     )

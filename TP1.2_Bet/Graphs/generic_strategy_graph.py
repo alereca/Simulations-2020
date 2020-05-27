@@ -16,10 +16,7 @@ def generate_graph(results, strategy_name):
 
     specific_plot_generator(
         metrics_arrays=[
-            Metrics(
-                data=result.frequency, color=result.color, plot_color=result.plot_color
-            )
-            for result in results["limited_capital"]
+            Metrics(data=result.frequency) for result in results["limited_capital"]
         ],
         params=Params(
             title=f"Color frequency with Limited Capital",
@@ -31,12 +28,7 @@ def generate_graph(results, strategy_name):
 
     specific_plot_generator(
         metrics_arrays=[
-            Metrics(
-                data=result.capital,
-                color=result.color,
-                plot_color=result.plot_color,
-                expected_value=result.initial_capital,
-            )
+            Metrics(data=result.capital, expected_value=result.initial_capital,)
             for result in results["limited_capital"]
         ],
         params=Params(
@@ -49,10 +41,7 @@ def generate_graph(results, strategy_name):
 
     specific_plot_generator(
         metrics_arrays=[
-            Metrics(
-                data=result.frequency, color=result.color, plot_color=result.plot_color
-            )
-            for result in results["unlimited_capital"]
+            Metrics(data=result.frequency) for result in results["unlimited_capital"]
         ],
         params=Params(
             title="Color Frequency with Unlimited Capital",
@@ -64,12 +53,7 @@ def generate_graph(results, strategy_name):
 
     specific_plot_generator(
         metrics_arrays=[
-            Metrics(
-                data=result.capital,
-                color=result.color,
-                plot_color=result.plot_color,
-                expected_value=result.initial_capital,
-            )
+            Metrics(data=result.capital, expected_value=result.initial_capital,)
             for result in results["unlimited_capital"]
         ],
         params=Params(
