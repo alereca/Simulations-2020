@@ -13,5 +13,6 @@ def general_generate_subplot(figure):
         ax.set_title(label=params.title)
         ax.set_xlabel(xlabel=params.xlabel)
         ax.set_ylabel(ylabel=params.ylabel)
+        ax.set_xlim(0)
 
     return specific_generate

@@ -11,7 +11,7 @@ import seaborn as sn
 if __name__ == "__main__":
     iteration_limited_capital = 10000
     iteration_unlimited_capital = 1000
-    n_gens = 200
+    n_gens = 20
 
     common_configs = {
         "limited_capital": Config(
