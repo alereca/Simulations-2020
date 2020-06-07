@@ -1,6 +1,5 @@
 import numpy as np
 import math
-from pytest import approx
 from Utils.check_approximation import check_approximation
 
 
@@ -22,4 +21,4 @@ def test_exponential(length, lmda):
     print("Mean: ", check_approximation(expected_mean, observed_mean))
     print(expected_mean, observed_mean)
     print("Var: ", check_approximation(expected_var, observed_var))
-    print(expected_mean, observed_var)
+    print(expected_var, observed_var)
