@@ -3,7 +3,6 @@ from Utils.check_approximation import check_approximation
 
 def generic_test(test_name, sequence, expected_mean, expected_var):
     observed_mean = sequence.mean()
-
     observed_var = sequence.var()
 
     print(test_name)
