@@ -1,5 +1,5 @@
 import numpy as np
-from Utils.check_approximation import check_approximation
+from Utils.generic_test import generic_test
 
 
 def pascal_num(k, q):
@@ -11,16 +11,9 @@ def pascal_num(k, q):
 
 
 def test_pascal(length, k, q):
-    sequence = np.array([pascal_num(k, q) for _ in range(length)])
-
-    expected_mean = k * q / (1 - q)
-    observed_mean = sequence.mean()
-
-    expected_var = k * q / ((1 - q) ** 3)
-    observed_var = sequence.var()
-
-    print(f"Pascal successes: {k} fail probability {q} length: {length}")
-    print("Mean: ", check_approximation(expected_mean, observed_mean))
-    print(expected_mean, observed_mean)
-    print("Var: ", check_approximation(expected_var, observed_var))
-    print(expected_var, observed_var)
+    generic_test(
+        test_name=f"Pascal successes: {k} | fail probability {q} | length: {length}",
+        sequence=np.array([pascal_num(k, q) for _ in range(length)]),
+        expected_mean=k * q / (1 - q),
+        expected_var=k * q / ((1 - q) ** 2),
+    )
