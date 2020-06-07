@@ -1,5 +1,4 @@
 import numpy as np
-import math
 from Utils.check_approximation import check_approximation
 
 
@@ -8,7 +7,7 @@ def pascal_num(k, q):
     for _ in range(k):
         r = np.random.uniform()
         multiplicative_series *= r
-    return round(math.log(multiplicative_series) / math.log(q))
+    return round(np.log10(multiplicative_series) / np.log10(q))
 
 
 def test_pascal(length, k, q):
