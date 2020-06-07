@@ -11,7 +11,7 @@ def poisson_num(lmda):
         r = np.random.uniform()
         multiplicative_series *= r
 
-        if multiplicative_series > e_minus_lmda:
+        if multiplicative_series >= e_minus_lmda:
             x += 1
         else:
             break
