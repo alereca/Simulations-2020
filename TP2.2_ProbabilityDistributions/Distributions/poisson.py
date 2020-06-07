@@ -21,7 +21,7 @@ def poisson_num(lmda):
 
 def test_poisson(length, lmda):
     generic_test(
-        test_name="Poisson (lmda: {lmbda}| length: {length}",
+        test_name=f"Poisson (lmda: {lmda}| length: {length})",
         sequence=np.array([poisson_num(lmda) for _ in range(length)]),
         expected_mean=lmda,
         expected_var=lmda,

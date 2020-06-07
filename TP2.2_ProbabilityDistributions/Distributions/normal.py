@@ -12,7 +12,7 @@ def normal_num(mean, std):
 
 def test_normal(length, mean, std):
     generic_test(
-        test_name=f"Normal(mean: {mean}| std: {std}| length: {length})",
+        test_name=f"Normal (mean: {mean}| std: {std}| length: {length})",
         sequence=np.array([normal_num(mean, std) for _ in range(length)]),
         expected_mean=mean,
         expected_var=std ** 2
