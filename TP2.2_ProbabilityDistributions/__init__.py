@@ -6,6 +6,7 @@ from Distributions.uniform import test_uniform
 from Distributions.gamma import test_gamma
 from Distributions.binomial import test_binomial
 
+
 if __name__ == "__main__":
     length = 1000
 
@@ -16,3 +17,4 @@ if __name__ == "__main__":
     test_uniform(length, 1, 2)
     test_gamma(length, 1,5)
     test_binomial(length, p=0.7, n=1000)
+
