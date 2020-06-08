@@ -5,10 +5,6 @@ def uniform_num(a,b):
     r = np.random.uniform()
     return r*(b-a) + a
 
-def inverse_uniform_num(a,b):
-    r = np.random.uniform()
-    return a + (b-a) * r
-
 def test_uniform(length, a, b):
     generic_test(
         test_name=f"Uniform (a: {a}|b: {b}| length: {length})",
