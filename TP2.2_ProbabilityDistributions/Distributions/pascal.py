@@ -12,7 +12,7 @@ def pascal_num(k, q):
 
 def test_pascal(length, k, q):
     generic_test(
-        test_name=f"Pascal successes: {k} | fail probability {q} | length: {length}",
+        test_name=f"Pascal (successes: {k}| fail probability {q}| length: {length})",
         sequence=np.array([pascal_num(k, q) for _ in range(length)]),
         expected_mean=k * q / (1 - q),
         expected_var=k * q / ((1 - q) ** 2),
