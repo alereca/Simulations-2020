@@ -7,7 +7,7 @@ def gamma_num(lmda, k, tr=1):
     trg = tr
     for i in range(k):
         r = np.random.uniform()
-        trg = tr * r
+        trg *= r
     return -math.log(trg) / lmda
 
 
