@@ -2,15 +2,19 @@ import numpy as np
 from Utils.generic_test import generic_test
 import math
 
-def gamma_num(tr, a):
-    r = np.random.uniform()
-    tr = tr * r
-    return -math.log(tr)/a
 
-def test_gamma(length, a, k, tr=1):
+def gamma_num(lmda, k, tr=1):
+    trg = tr
+    for i in range(k):
+        r = np.random.uniform()
+        trg = tr * r
+    return -math.log(trg) / lmda
+
+
+def test_gamma(length, lmda, k, tr=1):
     generic_test(
-        test_name=f"Gamma (a: {a}|k: {k}| length: {length})",
-        sequence=np.array([gamma_num(a, tr) for _ in range(length)]),
-        expected_mean=k/a,
-        expected_var=k/a**2,
+        test_name=f"Gamma (a: {lmda}|k: {k}| length: {length})",
+        sequence=np.array([gamma_num(lmda, k) for _ in range(length)]),
+        expected_mean=k / lmda,
+        expected_var=k / lmda ** 2,
     )

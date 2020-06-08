@@ -14,5 +14,5 @@ if __name__ == "__main__":
     test_normal(length, mean=20, std=2)
     test_poisson(length, lmda=1)
     test_uniform(length, 1, 2)
-    test_gamma(length, 1, 1)
+    test_gamma(length, 1,5)
     test_binomial(length, p=0.7, n=1000)
