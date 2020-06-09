@@ -5,7 +5,7 @@ from Distributions.poisson import test_poisson
 from Distributions.uniform import test_uniform
 from Distributions.gamma import test_gamma
 from Distributions.binomial import test_binomial
-from Distributions.empirical_discrete import empirical_discrete_num
+from Distributions.empirical_discrete import test_empirical_discrete
 
 
 if __name__ == "__main__":
@@ -18,4 +18,4 @@ if __name__ == "__main__":
     test_uniform(length, a=1, b=2)
     test_gamma(length, lmda=1, k=5)
     test_binomial(length, p=0.7, n=1000)
-    print(empirical_discrete_num())
+    test_empirical_discrete(length)
