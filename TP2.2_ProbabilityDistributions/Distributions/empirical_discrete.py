@@ -21,6 +21,12 @@ def find_number_by_accumulative_probability(dict_tuples, random_num):
             return key
 
 
+def empirical_discrete_num():
+    r = np.random.uniform()
+
+    return find_number_by_accumulative_probability(distribution.items(), r)
+
+
 def calculate_mean():
     return sum([key * value[0] for (key, value) in distribution.items()])
 
@@ -29,12 +35,6 @@ def calculate_var(mean):
     return sum(
         [((key - mean) ** 2) * value[0] for (key, value) in distribution.items()]
     )
-
-
-def empirical_discrete_num():
-    r = np.random.uniform()
-
-    return find_number_by_accumulative_probability(distribution.items(), r)
 
 
 def test_empirical_discrete(length):
